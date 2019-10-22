@@ -1,7 +1,7 @@
 import React from 'react'
 import {addCardToDeck} from '../utils/async'
 import styles,{TouchStyle} from './Styles'
-import {View, Text,TextInput,TouchableOpacity,Platform} from 'react-native'
+import {View, Text,TextInput,TouchableOpacity,Platform,KeyboardAvoidingView} from 'react-native'
 export default class AddQuestion extends React.Component{
     static navigationOptions =()=>{
         return {
@@ -30,19 +30,21 @@ export default class AddQuestion extends React.Component{
         
         return(
         <View style={styles.Container}>
+            <KeyboardAvoidingView>
                 <TextInput
-                style={styles.TextInput}
-                placeholder = 'enter your question'
-                onChangeText={ text => this.onChangeQuestionText(text)}
+                    style={styles.TextInput}
+                    placeholder = 'enter your question'
+                    onChangeText={ text => this.onChangeQuestionText(text)}
                 />
                 <TextInput
-                style={styles.TextInput}
-                placeholder = 'enter your answer'
-                onChangeText={ text => this.onChangeAnswerText(text)}
+                    style={styles.TextInput}
+                    placeholder = 'enter your answer'
+                    onChangeText={ text => this.onChangeAnswerText(text)}
                 />
-            <TouchableOpacity onPress={this.submit} style={Platform.os==='ios'?TouchStyle.iosSubmitBtn:TouchStyle.androidSubmitBtn}>
-                <Text style={TouchStyle.submitBtnText}>Submit</Text>
-            </TouchableOpacity>
+                <TouchableOpacity onPress={this.submit} style={Platform.os==='ios'?TouchStyle.iosSubmitBtn:TouchStyle.androidSubmitBtn}>
+                    <Text style={TouchStyle.submitBtnText}>Submit</Text>
+                </TouchableOpacity>
+            </KeyboardAvoidingView>
         </View>
         )
     }

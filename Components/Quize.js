@@ -9,6 +9,12 @@ export default class Quize extends React.Component{
         correctAnswers :0
 
     }
+    static navigationOptions =({navigation})=>{
+        const{title} =  navigation.getParam('deck')
+        return {
+            title: `${title} Quiz`
+        }
+      }
     showAnswer(){
         this.setState({
             showAnswer :true,
@@ -51,14 +57,16 @@ export default class Quize extends React.Component{
                 return (
                     <View style= {{alignItems:'center',justifyContent:'center'}}>
                         <Text style={Styles.title}>{result}</Text>
-                        <TouchableOpacity style={Platform.OS ==='ios'?TouchStyle.iosSubmitBtn:TouchStyle.androidSubmitBtn}
-                            onPress={()=>{this.restart()}}>
-                            <Text style={TouchStyle.submitBtnText}>Restart Quiz</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={Platform.OS ==='ios'?TouchStyle.iosSubmitBtn:TouchStyle.androidSubmitBtn}
-                            onPress={()=>{this.back()}}>
-                            <Text style={TouchStyle.submitBtnText}>Go Back</Text>
-                        </TouchableOpacity>
+                        <View style={Styles.Container}>
+                            <TouchableOpacity style={[Platform.OS ==='ios'?TouchStyle.iosSubmitBtn:TouchStyle.androidSubmitBtn,{marginBottom:8}]}
+                                onPress={()=>{this.restart()}}>
+                                <Text style={TouchStyle.submitBtnText}>Restart Quiz</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={Platform.OS ==='ios'?TouchStyle.iosSubmitBtn:TouchStyle.androidSubmitBtn}
+                                onPress={()=>{this.back()}}>
+                                <Text style={TouchStyle.submitBtnText}>Go Back</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 )
             }

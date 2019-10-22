@@ -11,15 +11,15 @@ export default class Decks extends Component{
     }
     getdata(){
         this.setState({decks:[]})
-         getDecks().then((keys)=>{
-                for(key of keys){
-                    getDeck(key).then((res)=>{
-                        this.setState((state)=>{
-                            return {decks: state.decks.concat(JSON.parse(res))}
-                        })
-                    })
-                } 
-            })
+        getDecks().then((keys)=>{
+               for(key of keys.filter((key)=>key!=='FlashCards:notifications')){
+                   getDeck(key).then((res)=>{
+                       this.setState((state)=>{
+                           return {decks: state.decks.concat(JSON.parse(res))}
+                       })
+                   })
+               } 
+           })
     }
     componentWillUnmount() {
         this.focusListener.remove();
