@@ -1,6 +1,6 @@
 import { Notifications } from 'expo'
 import {AsyncStorage} from 'react-native'
-import {Permissions} from 'expo-permissions'
+import * as Permissions from 'expo-permissions'
 
 const NOTIFICATION_KEY = 'FlashCards:notifications'
 export function clearLocalNotification () {

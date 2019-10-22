@@ -25,7 +25,7 @@ export default class Decks extends Component{
         this.focusListener.remove();
     }
     render(){
-        if(this.state.decks.length === 0){
+        if(this.state.decks.length === 0 || this.state.decks ===null){
             return (
                 <Text>no decks added yet!!</Text>
             )
